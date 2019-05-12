@@ -3501,6 +3501,106 @@ const tiles = {
     cities: [{ size: 4, percent: 0.1 }],
     track: [{ side: 2 }, { side: 3 }, { side: 4 }, { size: 5 }]
   },
+
+  // 1825
+  "114": {
+    color: "yellow",
+    towns: [
+      { angle: 308, percent: 0.7, rotation: 86 },
+      { angle: 113, percent: 0.7, rotation: 147 },
+    ],
+    track: [
+      { side: 2, type: "sharp" },
+      { side: 6, type: "sharp" }
+    ],
+    values: [
+      { angle: 260, percent: 0.52, value: 10 },
+      { angle: 160, percent: 0.57, value: 10 },
+    ]
+  },
+  "198|1825": {
+    color: "yellow",
+    values: [
+      { angle: -45, percent: 0.6, value: 10 },
+      { angle: 148, percent: 0.7, value: 10 },
+    ],
+    towns: [
+      { angle: 5, percent: 0.6, rotation: -5 },
+      { angle: 187, percent: 0.7, rotation: -32 },
+    ],
+    track: [
+      { side: 1, type: "gentle" },
+      { side: 4, type: "sharp" },
+    ]
+  },
+  "199|1825": {
+    color: "yellow",
+    values: [
+      { angle: 45, percent: 0.6, value: 10 },
+      { angle: -148, percent: 0.7, value: 10 },
+    ],
+    towns: [
+      { angle: -5, percent: 0.6, rotation: 5 },
+      { angle: -187, percent: 0.7, rotation: 32 },
+    ],
+    track: [
+      { side: 5, type: "gentle" },
+      { side: 3, type: "sharp" },
+    ]
+  },
+  "10": {
+    color: "green",
+    values: [
+      { angle: 90, percent: 0.75, value: 30 },
+      { angle: -90, percent: 0.75, value: 30 },
+    ],
+    cities: [
+      { size: 1, percent: 0.5, angle: 30 },
+      { size: 1, percent: 0.5, angle: 210 },
+    ],
+    track: [
+      { side: 1, type: "sharpStop" },
+      { side: 4, type: "sharpStop" },
+    ]
+  },
+  "11": {
+    color: "green",
+    values: [ { angle: -45, percent: 0.75, value: 10 } ],
+    labels: { label: "HALT", angle: 180, percent: 0.84 },
+    track: [
+      { side: 1, type: "gentle" },
+      { side: 3, type: "gentle" },
+      { side: 5, type: "gentle" },
+    ],
+    towns: [ { angle: 180, percent: 0.27, rotation: 90, color: "halt"} ],
+  },
+  "52": {
+    color: "green",
+    values: [
+      { angle: 270, percent: 0.75, value: 40 },
+      { angle: 210, percent: 0.75, value: 40 },
+    ],
+    cities: [
+      { size: 1, percent: 0.5, angle: 150, value: 40 },
+      { size: 1, percent: 0.5, angle: 330, value: 40 },
+    ],
+    track: [
+      { side: 1, type: "sharpStopRev" },
+      { side: 3, type: "sharpStop" },
+    ],
+  },
+  "87": {
+    color: "green",
+    centerTowns: [ {} ],
+    values: [ { angle: 210, percent: 0.75, value: 10 } ],
+    track: [ { side: 1 }, { side: 2 }, { side: 3 }, { side: 4 } ],
+  },
+  "88": {
+    color: "green",
+    centerTowns: [ {} ],
+    values: [ { angle: 210, percent: 0.75, value: 10 } ],
+    track: [ { side: 1 }, { side: 3 }, { side: 4 }, { side: 6 } ],
+  }
 };
 
 export default tiles;
