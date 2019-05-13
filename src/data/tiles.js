@@ -3600,6 +3600,95 @@ const tiles = {
     centerTowns: [ {} ],
     values: [ { angle: 210, percent: 0.75, value: 10 } ],
     track: [ { side: 1 }, { side: 3 }, { side: 4 }, { side: 6 } ],
+  },
+  "32": {
+    color: "brown",
+    labels: { label: "London", percent: 0.15 },
+    values: [ { value: 70, angle: 180, percent: 0.17 } ],
+    cities: [
+      { size: 1, percent: 0.8, angle: 0 },
+      { size: 1, percent: 0.8, angle: 60 },
+      { size: 1, percent: 0.8, angle: 120 },
+      { size: 1, percent: 0.8, angle: 180 },
+      { size: 1, percent: 0.8, angle: 240 },
+      { size: 1, percent: 0.8, angle: 300 },
+    ]
+  },
+  "33": {
+    color: "brown",
+    track: [
+      { side: 1, type: "sharpStopRev" },
+      { side: 2, type: "stop" },
+      { side: 3, type: "sharpStop" }
+    ],
+    labels: { label: "L", angle: 270, percent: 0.84 },
+    cities: [
+      { size: 1, percent: 0.6, angle: 330 },
+      { size: 1, percent: 0.5, angle: 60 },
+      { size: 1, percent: 0.6, angle: 150 }
+    ],
+    values: [ { angle: 210, percent: 0.75, value: 50 } ]
+  },
+  "34": {
+    color: "brown",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 3, type: "sharpStopRev" },
+      { side: 5, type: "sharpStop" }
+    ],
+    cities: [
+      { size: 1, percent: 0.55 },
+      { size: 1, percent: 0.6, angle: 90 },
+      { size: 1, percent: 0.6, angle: 270 },
+    ],
+    labels: { label: "BGM", angle: 146, percent: 0.75 },
+    values: [ { angle: 210, percent: 0.75, value: 50 } ]
+  },
+  "35": {
+    color: "brown",
+    track: [
+      { side: 1, type: "gentle", cross: "over" },
+      { side: 6, type: "gentle", cross: "under" },
+    ],
+    values: [
+      { angle: 175, percent: 0.75, value: 40 },
+      { angle: 245, percent: 0.75, value: 40 },
+    ],
+    cities: [
+      { size: 1, percent: 0.5, angle: 120 },
+      { size: 1, percent: 0.5, angle: 300 },
+    ]
+  },
+  "36": {
+    color: "brown",
+    track: [
+      { side: 2, type: "gentle" },
+      { side: 5, type: "gentle" },
+    ],
+    cities: [
+      { size: 1, percent: 0.5, angle: 70 },
+      { size: 1, percent: 0.5, angle: 250 }
+    ],
+    values: [
+      { angle: 130, percent: 0.75, value: 40 },
+      { angle: 310, percent: 0.75, value: 40 },
+    ]
+  },
+  "37": {
+    color: "brown",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 1, type: "gentleStopRev" },
+      { side: 4, type: "gentleStopRev" },
+    ],
+    cities: [
+      { size: 1, percent: 0.55, angle: 70 },
+      { size: 1, percent: 0.55, angle: 250 },
+    ],
+    values: [
+      { angle: 130, percent: 0.75, value: 40 },
+      { angle: 310, percent: 0.75, value: 40 },
+    ]
   }
 };
 
