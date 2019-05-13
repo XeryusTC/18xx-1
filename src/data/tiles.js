@@ -3581,8 +3581,8 @@ const tiles = {
       { angle: 210, percent: 0.75, value: 40 },
     ],
     cities: [
-      { size: 1, percent: 0.5, angle: 150, value: 40 },
-      { size: 1, percent: 0.5, angle: 330, value: 40 },
+      { size: 1, percent: 0.5, angle: 150 },
+      { size: 1, percent: 0.5, angle: 330 },
     ],
     track: [
       { side: 1, type: "sharpStopRev" },
