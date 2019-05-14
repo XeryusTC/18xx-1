@@ -77,32 +77,6 @@ export const printableHeight = ({height, margins}) => {
   return height - margin;
 };
 
-export const trackType = track => {
-  if (track.end === undefined && track.start === undefined) {
-    return null;
-  } else if (track.end === undefined) {
-    return "city";
-  } else if (track.start === undefined) {
-    return "stop";
-  } else {
-    let diff = Math.abs(track.start - track.end);
-    if (diff > 3) {
-      diff = Math.abs(6 - diff);
-    }
-
-    switch (diff) {
-      case 1:
-        return "sharp";
-      case 2:
-        return "gentle";
-      case 3:
-        return "straight";
-      default:
-        return "city";
-    }
-  }
-};
-
 export const fillArray = curry((getNumber, array) => {
   return chain(a => Array(getNumber(a)).fill(a), array);
 });

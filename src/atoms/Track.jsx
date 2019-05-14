@@ -25,6 +25,7 @@ export const sidesFromTrack = track => {
   switch(track.type) {
   case "custom":
     return propOr([], "sides", track);
+  case "bleed":
   case "mid":
     return [];
   case "sharp":
@@ -64,6 +65,9 @@ const Track = ({ type, gauge, border, offset, path }) => {
     let end = border ? 30:40;
     width = border ? 8 : 6;
     path = `M${width},75 -${width},75 0,${end}z`;
+    break;
+  case "bleed":
+    path = "m 0 80 L 0 75";
     break;
   case "stub":
     path = "m 0 75 L 0 56.25";
