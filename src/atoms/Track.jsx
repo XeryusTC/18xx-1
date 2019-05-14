@@ -3,6 +3,57 @@ import Color from "../data/Color";
 
 import HexContext from "../context/HexContext";
 
+import chain from "ramda/src/chain";
+import compose from "ramda/src/compose";
+import defaultTo from "ramda/src/defaultTo";
+import propOr from "ramda/src/propOr";
+import sort from "ramda/src/sort";
+import subtract from "ramda/src/subtract";
+import uniq from "ramda/src/uniq";
+
+const sideMod = side => {
+  return side > 6 ? side - 6 : side;
+};
+
+export const sidesFromTrack = track => {
+  if (!track) {
+    return [];
+  }
+
+  let side = track.side || 1;
+
+  switch(track.type) {
+  case "custom":
+    return propOr([], "sides", track);
+  case "mid":
+    return [];
+  case "sharp":
+    return [side, sideMod(side + 1)];
+  case "gentle":
+  case "lawson":
+       return [side, sideMod(side + 2)];
+  case "straight":
+  case "bent":
+          return [side, sideMod(side + 3)];
+  case "offboard":
+  case "stub":
+  case "stop":
+  case "straightStop":
+  case "gentleStop":
+  case "gentleStopRev":
+  case "sharpStop":
+  case "sharpStopRev":
+  default:
+    return [side];
+  }
+};
+
+export const sidesFromTile = compose(uniq,
+                                     sort(subtract),
+                                     chain(sidesFromTrack),
+                                     propOr([], "track"),
+                                     defaultTo([]));
+
 const Track = ({ type, gauge, border, offset, path }) => {
   let width = border ? 16 : 12;
 

@@ -192,6 +192,14 @@
           {
             "type": "object",
             "properties": {
+              "sides": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "minimum": 1,
+                  "maximum": 6
+                }
+              },
               "type": {
                 "type": "string",
                 "enum": ["custom", "offboard", "stub", "stop", "mid", "straight",
