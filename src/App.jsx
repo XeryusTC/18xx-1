@@ -252,6 +252,13 @@ const App = () => (
                     <stop offset="50%" stopColor={c("gray")}/>
                     <stop offset="100%" stopColor={c("gray")}/>
                   </linearGradient>
+                  <linearGradient id="orange-gray" spreadMethod="repeat"
+                                  x1="0" x2="0" y1="0" y2="16.6667%">
+                    <stop offset="0%" stopColor={c("orange")}/>
+                    <stop offset="50%" stopColor={c("orange")}/>
+                    <stop offset="50%" stopColor={c("gray")}/>
+                    <stop offset="100%" stopColor={c("gray")}/>
+                  </linearGradient>
                 </React.Fragment>
               )}
             </Color>
