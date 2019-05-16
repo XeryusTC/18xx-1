@@ -205,6 +205,12 @@ const atoms = [{
   examples: [
     {routeBonus: [{value:"$40"}]},
     {routeBonus: [{value:"+$120"}]}]
+},{
+  group: "Rects",
+  examples: [
+    {rects: [{}]},
+    {rects: [{color: "blue", width: 30, stroke: "orange", strokeWidth: "5"}]}
+  ]
 }];
 
 const examples = R.addIndex(R.chain)((h,id) => {

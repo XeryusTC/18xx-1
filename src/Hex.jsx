@@ -23,6 +23,7 @@ import Label from "./atoms/Label";
 import MediumCity from "./atoms/MediumCity";
 import Name from "./atoms/Name";
 import OffBoardRevenue from "./atoms/OffBoardRevenue";
+import Rect from "./atoms/Rect.jsx";
 import RouteBonus from "./atoms/RouteBonus";
 import Terrain from "./atoms/Terrain";
 import Town from "./atoms/Town";
@@ -163,6 +164,7 @@ const HexTile = ({ hex, id, border, transparent, map }) => {
       <Token token={t.color} {...t} />
     </ColorContext.Provider>
   )}</Position>;
+  let rects = <Position data={hex.rects}>{r => <Rect {...r} />}</Position>;
 
   return (
     <g>
@@ -178,6 +180,7 @@ const HexTile = ({ hex, id, border, transparent, map }) => {
                 {mediumCityBorders}
                 {townBorders}
                 {tracks}
+                {rects}
                 {values}
                 {cities}
                 {mediumCities}
