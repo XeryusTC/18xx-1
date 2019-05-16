@@ -3689,7 +3689,49 @@ const tiles = {
       { angle: 130, percent: 0.75, value: 40 },
       { angle: 310, percent: 0.75, value: 40 },
     ]
-  }
+  },
+  "38": {
+    color: "brown",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 3 },
+      { side: 5 },
+    ],
+    cities: [ { size: 2 } ],
+    values: [ { angle: 210, percent: 0.84, value: 40 } ]
+  },
+  "118": {
+    color: "brown",
+    track: [
+      { side: 4, type: "sharp" },
+      { side: 6, type: "sharp" },
+    ],
+    cities: [
+      { size: 1, angle: 210, percent: 0.55 },
+      { size: 1, angle: 330, percent: 0.55 },
+    ],
+    values: [
+      { angle: 140, percent: 0.6, value: 40 },
+      { angle: 40, percent: 0.6, value: 40 },
+    ]
+  },
+  "119": {
+    color: "green/brown",
+    track: [ { side: 1, type: "straight" }, { side: 3 }, { side: 5 } ],
+    cities: [ { size: 2 } ],
+    values: [ { angle: 210, percent: 0.84, value: 30 } ]
+  },
+  "200|1825": {
+    color: "brown/gray",
+    rects: [ { color: "black", width: 53 } ],
+    track: [
+      { side: 1 },
+      { side: 2, type: "straight" },
+      { side: 3, type: "straight" },
+    ],
+    cities: [ { size: 1 } ],
+    values: [ { angle: 210, percent: 0.84, value: 10 } ],
+  },
 };
 
 export default tiles;
