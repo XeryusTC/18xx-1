@@ -3722,7 +3722,7 @@ const tiles = {
     values: [ { angle: 210, percent: 0.84, value: 30 } ]
   },
   "200|1825": {
-    color: "brown/gray",
+    color: "orange/gray",
     rects: [ { color: "black", width: 53 } ],
     track: [
       { side: 1 },
@@ -3731,6 +3731,94 @@ const tiles = {
     ],
     cities: [ { size: 1 } ],
     values: [ { angle: 210, percent: 0.84, value: 10 } ],
+  },
+  "48": {
+    color: "gray",
+    labels: { label: "London", percent: 0.15 },
+    values: [ { value: 100, angle: 180, percent: 0.17 } ],
+    cities: [
+      { size: 1, percent: 0.8, angle: 0 },
+      { size: 1, percent: 0.8, angle: 60 },
+      { size: 1, percent: 0.8, angle: 120 },
+      { size: 1, percent: 0.8, angle: 180 },
+      { size: 1, percent: 0.8, angle: 240 },
+      { size: 1, percent: 0.8, angle: 300 },
+    ]
+  },
+  "49": {
+    color: "gray",
+    labels: { label: "L", percent: 0.88, angle: 150 },
+    values: [ { value: 70, angle: 210, percent: 0.88 } ],
+    cities: [ { size: 3, rotation: 60 } ],
+    track: [ { side: 1 }, { side: 2 }, { side: 3 } ]
+  },
+  "50": {
+    color: "gray",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 3, type: "sharpStopRev" },
+      { side: 5, type: "sharpStop" }
+    ],
+    cities: [
+      { size: 1, percent: 0.55 },
+      { size: 1, percent: 0.6, angle: 90 },
+      { size: 1, percent: 0.6, angle: 270 },
+    ],
+    labels: { label: "BGM", angle: 146, percent: 0.75 },
+    values: [ { angle: 210, percent: 0.75, value: 70 } ]
+  },
+  "60": {
+    color: "gray",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 2, type: "straight" },
+      { side: 3, type: "straight" },
+    ]
+  },
+  "166": {
+    color: "brown/gray",
+    track: [
+      { side: 1 },
+      { side: 2, type: "straight" },
+      { side: 3, type: "straight" }
+    ],
+    cities: [ { size: 2 } ],
+    values: [ { angle: 210, percent: 0.84, value: 40 } ]
+  },
+  "167|1825": {
+    color: "gray",
+    track: [
+      { side: 2, type: "sharp" },
+      { side: 6, type: "sharp" },
+      { type: "custom", side: 4, path: "m 0 75 Q 0 0 -25 -40", cross: "over" },
+      { type: "custom", side: 5, path: "m 0 75 Q 0 0 25 -40", cross: "under" },
+    ],
+    cities: [
+      { size: 1, angle: 90, percent: 0.6 },
+      { size: 1, angle: 330, percent: 0.6 },
+    ],
+    values: [
+      { angle: 150, percent: 0.84, value: 70 },
+      { angle: 270, percent: 0.84, value: 70 },
+    ],
+  },
+  "168|1825": {
+    color: "gray",
+    track: [ { side: 1, type: "straight" }, { side: 5 }, { side: 6 } ],
+    cities: [ { size: 3, rotation: -30 } ],
+    values: [ { angle: 210, percent: 0.84, value: 70 } ],
+  },
+  "W9": {
+    color: "orange",
+    track: [
+      { side: 1, type: "straight" },
+      { side: 4, type: "gentleStop" },
+      { side: 5, type: "sharp" }
+    ],
+    cities: [ { size: 1, angle: 270, percent: 0.6 } ],
+    values: [ { angle: 210, percent: 0.84, value: 10 } ],
+    tokens: [ { label: "S&D", token: "white", angle: 270, percent: 0.6 } ],
+    labels: { label: "Highbridge", angle: 90, percent: 0.4, rotation: 270 }
   },
 };
 
