@@ -26,7 +26,6 @@ describe("sidesFromTrack", () => {
 
   describe("with a single track", () => {
     it("should return a single answer", () => {
-      expect(sidesFromTrack(type("bleed"))).toEqual([]);
       expect(sidesFromTrack(type("offboard"))).toEqual([1]);
       expect(sidesFromTrack(type("stub"))).toEqual([1]);
       expect(sidesFromTrack(type("stop"))).toEqual([1]);
@@ -78,7 +77,6 @@ describe("sidesFromTile", () => {
 
   describe("with a single track", () => {
     it("should return a single answer", () => {
-      expect(sidesFromTile(type("bleed"))).toEqual([]);
       expect(sidesFromTile(type("offboard"))).toEqual([1]);
       expect(sidesFromTile(type("stub"))).toEqual([1]);
       expect(sidesFromTile(type("stop"))).toEqual([1]);
