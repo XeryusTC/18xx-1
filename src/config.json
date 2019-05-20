@@ -23,7 +23,8 @@
   "shareLayout": "left",
   "tiles": {
     "layout": "offset",
-    "width": 150
+    "width": 150,
+    "bleed": true
   },
   "stock": {
     "cell": {

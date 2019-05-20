@@ -88,11 +88,15 @@
         "layout": {
           "type": "string",
           "enum": ["offset", "individual", "die"]
+        },
+        "bleed": {
+          "type": "boolean"
         }
       },
       "required": [
         "layout",
-        "width"
+        "width",
+        "bleed"
       ],
       "additionalProperties": false
     },

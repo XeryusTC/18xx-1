@@ -63,7 +63,7 @@ const makeBorder = track => {
   );
 };
 
-const HexTile = ({ hex, id, border, transparent, map }) => {
+const HexTile = ({ hex, id, clipPath, border, transparent, map }) => {
   if (hex === undefined || hex === null) {
     return null;
   }
@@ -167,11 +167,13 @@ const HexTile = ({ hex, id, border, transparent, map }) => {
   return (
     <g>
       <PhaseContext.Provider value={hex.color || "plain"}>
-        <Hex color={hex.color || "plain"} transparent={transparent} map={map} />
-
         <HexContext.Consumer>
           {hx => (
-            <g clipPath="url(#hexClip)" transform={`rotate(${hx.rotation || 0})`}>
+            <g clipPath={`url(#${clipPath || "hexClip"})`} transform={`rotate(${hx.rotation || 0})`}>
+              <Hex color={hex.color || "plain"}
+                   transparent={transparent}
+                   map={map} />
+
               <g transform={`rotate(-${hx.rotation})`}>
                 {icons}
                 {cityBorders}

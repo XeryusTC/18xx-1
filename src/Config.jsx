@@ -227,6 +227,8 @@ const Config = ({config, setConfig, resetConfig}) => {
              description="This determines how to lay out the tiles on the tile sheet. Offset is the style that tries to make as few cuts as possible. Individual just has each tile separate from the others, and Die is meant from the custom Die cutters that Deep Thought Games uses"/>
       <Input name="tiles.width" label="Tile Width" dimension={true}
              description="This determines the default size of maps and tiles. It defines the distance from flat to flat. 1.5in would be standard 18xx size. 1in is small (1822 / 18OE) size. GMT uses 1.75in."/>
+      <Input name="tiles.bleed" label="Draw Tile Bleed?"
+             description="If checked, we draw a bleed region around tiles on tile sheets."/>
       <h3>Stock Markets</h3>
       <h3>Cards</h3>
       <Input name="shareLayout" label="Share Layout"
