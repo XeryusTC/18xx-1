@@ -22,9 +22,10 @@
   "companiesTheme": "gmt",
   "shareLayout": "left",
   "tiles": {
+    "bleed": true,
+    "cutlines": true,
     "layout": "offset",
-    "width": 150,
-    "bleed": true
+    "width": 150
   },
   "stock": {
     "cell": {
