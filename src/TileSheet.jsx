@@ -197,7 +197,8 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
           y = (bleedHeight / 2) + (getY(i) * height);
           break;
         case "die":
-          x = (bleedWidth / 2) + (getX(i) * (width + 25));
+          let extra = pageWidth - (4 * width) - (3 * 25);
+          x = (width / 2) + (extra / 2) + (getX(i) * (width + 25));
           y = (37.5 + (height / 2)) + (getY(i) * height);
           break;
         default:

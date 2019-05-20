@@ -57,6 +57,11 @@ body {
   overflow: visible;
 }
 
+.tileSheet--die {
+  width: 8in;
+  margin: auto;
+}
+
 .tileSheet--offset div.row:nth-child(even) {
     padding-left: 1.73205in;
 }
