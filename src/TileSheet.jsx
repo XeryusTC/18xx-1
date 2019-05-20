@@ -17,17 +17,18 @@ import addIndex from "ramda/src/addIndex";
 import append from "ramda/src/append";
 import clone from "ramda/src/clone";
 import compose from "ramda/src/compose";
+import concat from "ramda/src/concat";
 import curry from "ramda/src/curry";
 import drop from "ramda/src/drop";
 import filter from "ramda/src/filter";
 import groupBy from "ramda/src/groupBy";
 import includes from "ramda/src/includes";
-import intersperse from "ramda/src/intersperse";
 import is from "ramda/src/is";
 import keys from "ramda/src/keys";
 import map from "ramda/src/map";
 import prop from "ramda/src/prop";
 import propOr from "ramda/src/propOr";
+import reduce from "ramda/src/reduce";
 import repeat from "ramda/src/repeat";
 import split from "ramda/src/split";
 import take from "ramda/src/take";
@@ -76,6 +77,13 @@ const pageTiles = (perPage, pages, tiles) => {
   return pageTiles(perPage, append(current, pages), rest);
 };
 
+const Pins = () => (
+  <>
+    <circle r="10" cx="100" cy="25" />
+    <circle r="10" cx="700" cy="25" />
+  </>
+);
+
 const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
   let game = games[match.params.game];
 
@@ -90,28 +98,58 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
 
   let perRow = 4;
   let rowsPerPage = 6;
-  let clipPath = "hexBleedClip";
+  let clipPath = bleed ? "hexBleedClip" : "hexClip";
   switch(layout) {
   case "individual":
-    perRow = Math.floor(paper.width / ((bleed ? bleedWidth : width) + 12.5));
+    perRow = bleed ?
+      (Math.floor(pageWidth / bleedWidth)) :
+      (Math.floor((pageWidth + 12.5) / (width + 12.5)));
+    rowsPerPage = bleed ?
+      (Math.floor(pageHeight / bleedHeight)) :
+      (Math.floor((pageHeight + 12.5) / (height + 12.5)));
     break;
   case "offset":
-    perRow = 3;
-    clipPath = "hexBleedClipOffset";
+    perRow = Math.floor((pageWidth - 20 - (width/2)) / (width));
+    rowsPerPage = Math.floor((pageHeight - (bleed ? 20 : 0)) / (height));
+    clipPath = bleed ? "hexBleedClipOffset" : "hexClip";
+    break;
+  case "die":
+    pageWidth = 800;
+    pageHeight = 1050;
     break;
   default:
     break;
   }
   let perPage = perRow * rowsPerPage;
 
+  console.log({pageWidth, pageHeight, perRow, rowsPerPage, width, bleedWidth, height, bleedHeight});
   let tiles = gatherTiles(game.tiles);
 
   let groupedByColor = groupBy(prop("color"), tiles);
 
-  let separatedTiles = compose(unnest,
-                               intersperse(repeat(null, 4)),
-                               filter(x => x && x.length > 0),
-                               map(color => groupedByColor[color]))(tileColors);
+  let separatedTiles = compose(
+    reduce((tiles, color) => {
+      if (tiles.length === 0) return color;
+
+      switch(layout) {
+      case "offset":
+        let odd = Math.ceil(((tiles.length + 1) % perPage) / perRow) % 2 !== 0;
+
+        if (odd) {
+          return concat(tiles, concat(repeat(null, 4), color));
+        } else {
+          return concat(tiles, concat(repeat(null, 5), color));
+        }
+      case "die":
+        return concat(tiles, concat(repeat(null, 4), color));
+      default:
+        return concat(tiles, color);
+      }
+    }, []),
+    // intersperse(repeat(null, layout === "offset" ? 5 : 4)),
+    filter(x => x && x.length > 0),
+    map(color => groupedByColor[color])
+  )(tileColors);
 
   let pagedTiles = pageTiles(perPage, [], separatedTiles);
 
@@ -184,27 +222,34 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
           sides.push(clone(currentSides));
         }
 
-        let x = (bleedWidth / 2) + (getX(i) * bleedWidth);
-        let y = (bleedHeight / 2) + (getY(i) * bleedHeight);
+        let x = bleed ?
+            (bleedWidth / 2) + ((pageWidth - (perRow * bleedWidth)) / 2) + (getX(i) * bleedWidth) :
+            (width / 2) + ((pageWidth - (perRow * (width + 12.5))) / 2) + (getX(i) * (width + 12.5));
+        let y = bleed ?
+            (bleedHeight / 2) + ((pageHeight - (rowsPerPage * bleedHeight)) / 2) + (getY(i) * bleedHeight) :
+            (height / 2) + (((pageHeight + 12.5) - (rowsPerPage * (height + 12.5))) / 2) + (getY(i) * (height + 12.5));
 
         switch(layout) {
         case "offset":
+          let extraX = pageWidth - (perRow * width) - (width / 2) - (bleed ? 20 : 0);
+          let extraY = pageHeight - (rowsPerPage * height) - (bleed ? 20 : 0);
           if (getY(i) % 2 !== 0) {
-            x = ((bleedWidth / 2) + (width / 2)) + (getX(i) * width);
+            x = (((bleed ? bleedWidth : width) / 2) + (width / 2)) + (extraX / 2) + (getX(i) * width);
           } else {
-            x = (bleedWidth / 2) + (getX(i) * width);
+            x = ((bleed ? bleedWidth : width) / 2) + (extraX / 2) + (getX(i) * width);
           }
-          y = (bleedHeight / 2) + (getY(i) * height);
+          y = ((bleed ? bleedHeight : height) / 2) + (extraY / 2) + (getY(i) * height);
           break;
         case "die":
           let extra = pageWidth - (4 * width) - (3 * 25);
           x = (width / 2) + (extra / 2) + (getX(i) * (width + 25));
-          y = (37.5 + (height / 2)) + (getY(i) * height);
+          y = (25 + 37.5 + (height / 2)) + (getY(i) * height);
           break;
         default:
           break;
         }
 
+        console.log({rotation, x, y});
         return (
           <g clipPath={`url(#${clipPath})`} transform={`translate(${x} ${y})`} key={`${hex.id}-${i}`}>
             <g transform={`rotate(${rotation})`}>
@@ -214,6 +259,17 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
         )
       },
       page
+    );
+
+    let pins = layout === "die" ? <Pins/> : null;
+
+    let extraX = pageWidth - (perRow * width) - (width / 2) - (bleed ? 20 : 0);
+    let extraY = pageHeight - (rowsPerPage * height) - (bleed ? 20 : 0);
+    let cutlines = (
+      <>
+        <line x1={-width} y1={(extraY/2) + 10} x2={pageWidth + width} y2={(extraY/2) + 10} stroke="gray" strokeWidth="1" />
+        <line x1={-width} y1={(extraY/2) + 10 + height} x2={pageWidth + width} y2={(extraY/2) + 10 + height} stroke="gray" strokeWidth="1" />
+      </>
     );
 
     return (
@@ -226,6 +282,8 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
           }}
           viewBox={`0 0 ${pageWidth} ${pageHeight}`}
         >
+          {cutlines}
+          {pins}
           {tileNodes}
         </Svg>
       </div>
@@ -243,7 +301,8 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
       </div>
       <div className={`tileSheet tileSheet--${layout}`}>
         {pageNodes}
-        <PageSetup landscape={false}/>
+        <PageSetup paper={{width:850, height:1100, margins:25}}
+                   landscape={false}/>
       </div>
     </ColorContext.Provider>
   );
