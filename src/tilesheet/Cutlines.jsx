@@ -22,20 +22,24 @@ const HorizontalLines = ({ pageWidth, width, height, extraY, rowsPerPage }) => {
                       {...STROKE} />, indexes);
 };
 
-const ForwardLines = ({ bleedWidth, height, width, extraY, rowsPerPage }) => {
-  return map(index => <line x1={(bleedWidth / 2) + -10 + ((index - 3.5) * width)}
+const ForwardLines = ({ bleedWidth, height, width, extraY, perRow, rowsPerPage }) => {
+  let num = (Math.ceil(rowsPerPage / 2)) + perRow + 1;
+  let offset = -(rowsPerPage / 2);
+  return map(index => <line x1={(bleedWidth / 2) + -12 + ((index + offset - 0.5) * width)}
                       y1={20 + ((rowsPerPage + 1) * height)}
                       x2={(bleedWidth / 2) + (index * width)}
                       y2={0}
-                      {...STROKE} />, range(0,rowsPerPage + 1));
+                      {...STROKE} />, range(0,num));
 };
 
-const BackwardLines = ({ bleedWidth, height, width, extraY, rowsPerPage }) => {
-  return map(index => <line x1={(bleedWidth / 2) + ((index - 3) * width)}
+const BackwardLines = ({ bleedWidth, height, width, extraY, perRow, rowsPerPage }) => {
+  let num = (Math.ceil(rowsPerPage / 2)) + perRow;
+  let offset = -(rowsPerPage / 2);
+  return map(index => <line x1={(bleedWidth / 2) + ((index + offset) * width)}
                       y1={0}
-                      x2={(bleedWidth / 2) + 12 + ((index + 0.5) * width)}
+                      x2={(bleedWidth / 2) + 12 + ((index + offset + 3.5) * width)}
                       y2={20 + ((rowsPerPage + 1) * height)}
-                      {...STROKE} />, range(0,rowsPerPage + 1));
+                      {...STROKE} />, range(0,num));
 };
 
 const Cutlines = ({ bleed, cutlines, hexWidth, layout, paper }) => {
