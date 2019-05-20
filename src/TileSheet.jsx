@@ -156,11 +156,11 @@ const TileSheet = ({ match, paper, layout, hexWidth, bleed }) => {
               if (includes(1, currentSides) && includes(4, currentSides)) {
                 // Nothing
               } else if (includes(2, currentSides) && includes(5, currentSides)) {
-                rotation = 60;
-                currentSides = rotate(currentSides);
-              } else if (includes(3, currentSides) && includes(6, currentSides)) {
                 rotation = 120;
                 currentSides = rotate(rotate(currentSides));
+              } else if (includes(3, currentSides) && includes(6, currentSides)) {
+                rotation = 60;
+                currentSides = rotate(currentSides);
               } else {
                 while (!includes(4, currentSides)) {
                   rotation += 60;
